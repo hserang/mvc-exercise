@@ -2,7 +2,19 @@
 var Base = {};
 
 // need to create lib of helpers
-var __ = {};
+// todo make closure scoped version
+var Dubble = {};
+
+var Dubble = function() {};
+
+Dubble.prototype = {
+  isUndefined : function(val) {
+    return typeof val === "undefined";
+  }
+};
+
+var __ = new Dubble();
+
 
 Base.Model = function() {
   this.attrs = {};
@@ -11,7 +23,7 @@ Base.Model = function() {
 Base.Model.prototype = {
   get: function(key) {
     // need case for to check for 0 or no key set as well
-    if (typeof attrs[key] !== "undefined") {
+    if (__.isUndefined(attrs[key])) {
       //do some error thing
     }
 
