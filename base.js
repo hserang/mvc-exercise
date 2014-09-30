@@ -2,19 +2,23 @@
 var Base = {};
 
 // need to create lib of helpers
-// todo make closure scoped version
-var Dubble = {};
+(function() {
 
-var Dubble = function() {};
-
-Dubble.prototype = {
-  isUndefined : function(val) {
-    return typeof val === "undefined";
+  if (this.__) {
+    return;
   }
-};
 
-var __ = new Dubble();
+  var __ = function() {};
 
+  __.prototype = {
+    isUndefined : function(val) {
+      return typeof val === "undefined";
+    }
+  };
+
+  this.__ = new __();
+
+}).call(this);
 
 Base.Model = function() {
   this.attrs = {};
